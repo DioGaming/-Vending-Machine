@@ -7,7 +7,7 @@ package vending.machine;
 
 /**
  *
- * @author y.bulsara
+ * @author Richard Lam
  */
 public class VendingMachine {
 
@@ -15,7 +15,7 @@ public class VendingMachine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("");
     }
     
 }
