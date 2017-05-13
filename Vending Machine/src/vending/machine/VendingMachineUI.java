@@ -74,8 +74,18 @@ public class VendingMachineUI extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(260, 30));
 
         cheetos.setText("Cheetos Puffs");
+        cheetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cheetosActionPerformed(evt);
+            }
+        });
 
         cookie.setText("Chocolate Chip Cookie");
+        cookie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cookieActionPerformed(evt);
+            }
+        });
 
         GB.setText("Quaker Granola Bar");
         GB.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +102,11 @@ public class VendingMachineUI extends javax.swing.JFrame {
         });
 
         doritos.setText("Doritos");
+        doritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doritosActionPerformed(evt);
+            }
+        });
 
         nuts.setText("Roasted Peanuts");
 
@@ -108,6 +123,11 @@ public class VendingMachineUI extends javax.swing.JFrame {
         KK.setText("Kit Kat");
 
         cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         buy.setText("Purchase");
         buy.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +137,11 @@ public class VendingMachineUI extends javax.swing.JFrame {
         });
 
         clear.setText("Clear Selection");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("$2.50");
 
@@ -298,16 +323,118 @@ public class VendingMachineUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GBActionPerformed
-        // TODO add your handling code here:
+        //Select Only One
+        
+        if (GB.isSelected()) {
+            CLIF.setSelected(false);
+            KK.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
     }//GEN-LAST:event_GBActionPerformed
 
     private void CLIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CLIFActionPerformed
-        // TODO add your handling code here:
+        //Set Only One
+        
+        if (CLIF.isSelected()) {
+            GB.setSelected(false);
+            KK.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
     }//GEN-LAST:event_CLIFActionPerformed
 
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
-        // TODO add your handling code here:
+        //Purchase and give change
     }//GEN-LAST:event_buyActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        //Exit The GUI
+        System.exit(0);
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        //Clear all selections and textfields
+        CLIF.setSelected(false);
+        GB.setSelected(false);
+        KK.setSelected(false);
+        cheetos.setSelected(false);
+        cookie.setSelected(false);
+        doritos.setSelected(false);
+        lays.setSelected(false);
+        nuts.setSelected(false);
+        pretzel.setSelected(false);
+        ruffles.setSelected(false);
+        skittles.setSelected(false);
+        twix.setSelected(false);
+        
+        moneyOP.setText(" ");
+        changeOP.setText(" ");
+    }//GEN-LAST:event_clearActionPerformed
+
+    private void cheetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cheetosActionPerformed
+        //Set Only One
+        
+        if (cheetos.isSelected()) {
+            GB.setSelected(false);
+            KK.setSelected(false);
+            CLIF.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+    }//GEN-LAST:event_cheetosActionPerformed
+
+    private void cookieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cookieActionPerformed
+        //Set Only One
+        
+        if (cookie.isSelected()) {
+            GB.setSelected(false);
+            KK.setSelected(false);
+            cheetos.setSelected(false);
+            CLIF.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+    }//GEN-LAST:event_cookieActionPerformed
+
+    private void doritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doritosActionPerformed
+        //Set Only One
+        
+        if (doritos.isSelected()) {
+            GB.setSelected(false);
+            KK.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            CLIF.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+    }//GEN-LAST:event_doritosActionPerformed
 
     /**
      * @param args the command line arguments

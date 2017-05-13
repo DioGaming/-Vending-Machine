@@ -237,11 +237,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cheetos Puffs"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cheetosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="cookie">
       <Properties>
         <Property name="text" type="java.lang.String" value="Chocolate Chip Cookie"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cookieActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="GB">
       <Properties>
@@ -263,6 +269,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Doritos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doritosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="nuts">
       <Properties>
@@ -303,6 +312,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buy">
       <Properties>
@@ -316,6 +328,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear Selection"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
