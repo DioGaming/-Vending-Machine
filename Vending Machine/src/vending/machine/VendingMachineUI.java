@@ -178,13 +178,13 @@ public class VendingMachineUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(181, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(248, 248, 248)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,13 +197,13 @@ public class VendingMachineUI extends javax.swing.JFrame {
                         .addComponent(jLabel6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cookie)
                             .addComponent(doritos)
                             .addComponent(twix)
                             .addComponent(ruffles))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lays)
                             .addComponent(KK)
@@ -236,13 +236,13 @@ public class VendingMachineUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel15))
-                                .addGap(111, 111, 111)
+                                .addGap(110, 110, 110)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(moneyOP, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                     .addComponent(changeOP))))
                         .addGap(240, 240, 240))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12))
@@ -291,7 +291,7 @@ public class VendingMachineUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addGap(54, 54, 54)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pretzel)
                     .addComponent(ruffles)
@@ -301,7 +301,7 @@ public class VendingMachineUI extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(skittles)
                     .addComponent(twix)
@@ -337,13 +337,7 @@ public class VendingMachineUI extends javax.swing.JFrame {
             ruffles.setSelected(false);
             skittles.setSelected(false);
             twix.setSelected(false);
-        }
-    }//GEN-LAST:event_GBActionPerformed
-
-    private void CLIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CLIFActionPerformed
-        //Set Only One
-        
-        if (CLIF.isSelected()) {
+        }else if (CLIF.isSelected()){
             GB.setSelected(false);
             KK.setSelected(false);
             cheetos.setSelected(false);
@@ -355,10 +349,136 @@ public class VendingMachineUI extends javax.swing.JFrame {
             ruffles.setSelected(false);
             skittles.setSelected(false);
             twix.setSelected(false);
+        }else if (KK.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (cheetos.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            KK.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (cookie.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            KK.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (doritos.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            KK.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (lays.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            KK.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (nuts.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            KK.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (pretzel.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            KK.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (ruffles.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            KK.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }else if (skittles.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            KK.setSelected(false);
+            twix.setSelected(false);
+        }else if (twix.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            KK.setSelected(false);
+        }
+    }//GEN-LAST:event_GBActionPerformed
+
+    private void CLIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CLIFActionPerformed
+        //Set Only One
     }//GEN-LAST:event_CLIFActionPerformed
 
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
         //Purchase and give change
+        
     }//GEN-LAST:event_buyActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
@@ -387,53 +507,14 @@ public class VendingMachineUI extends javax.swing.JFrame {
 
     private void cheetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cheetosActionPerformed
         //Set Only One
-        
-        if (cheetos.isSelected()) {
-            GB.setSelected(false);
-            KK.setSelected(false);
-            CLIF.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
     }//GEN-LAST:event_cheetosActionPerformed
 
     private void cookieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cookieActionPerformed
         //Set Only One
-        
-        if (cookie.isSelected()) {
-            GB.setSelected(false);
-            KK.setSelected(false);
-            cheetos.setSelected(false);
-            CLIF.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
     }//GEN-LAST:event_cookieActionPerformed
 
     private void doritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doritosActionPerformed
         //Set Only One
-        
-        if (doritos.isSelected()) {
-            GB.setSelected(false);
-            KK.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            CLIF.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
     }//GEN-LAST:event_doritosActionPerformed
 
     /**
@@ -465,6 +546,7 @@ public class VendingMachineUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VendingMachineUI().setVisible(true);
             }
