@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package vending.machine;
-
 /*
  * @author http://www.twitch.tv/diomondplaysgames
  */
 public class VendingMachineUI extends javax.swing.JFrame {
-
+public class changecalcUI
     /**
      * Creates new form VendingMachineUI
      */
@@ -64,7 +63,6 @@ public class VendingMachineUI extends javax.swing.JFrame {
         jRadioButton2.setText("jRadioButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(3840, 2160));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setText("Vending Machine");
@@ -109,18 +107,53 @@ public class VendingMachineUI extends javax.swing.JFrame {
         });
 
         nuts.setText("Roasted Peanuts");
+        nuts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nutsActionPerformed(evt);
+            }
+        });
 
         pretzel.setText("Mini Pretzels");
+        pretzel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pretzelActionPerformed(evt);
+            }
+        });
 
         ruffles.setText("Ruffles All Dressed");
+        ruffles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rufflesActionPerformed(evt);
+            }
+        });
 
         lays.setText("Lays Original Potato Chips");
+        lays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laysActionPerformed(evt);
+            }
+        });
 
         skittles.setText("Skittles");
+        skittles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skittlesActionPerformed(evt);
+            }
+        });
 
         twix.setText("Twix");
+        twix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twixActionPerformed(evt);
+            }
+        });
 
         KK.setText("Kit Kat");
+        KK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KKActionPerformed(evt);
+            }
+        });
 
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -170,8 +203,22 @@ public class VendingMachineUI extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Insert Money:");
 
+        moneyOP.setText("$");
+        moneyOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moneyOPActionPerformed(evt);
+            }
+        });
+
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Change:");
+
+        changeOP.setText("$");
+        changeOP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeOPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,143 +384,24 @@ public class VendingMachineUI extends javax.swing.JFrame {
             ruffles.setSelected(false);
             skittles.setSelected(false);
             twix.setSelected(false);
-        }else if (CLIF.isSelected()){
-            GB.setSelected(false);
-            KK.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (KK.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (cheetos.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            KK.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (cookie.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            KK.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (doritos.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            KK.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (lays.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            KK.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (nuts.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            KK.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (pretzel.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            KK.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (ruffles.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            KK.setSelected(false);
-            skittles.setSelected(false);
-            twix.setSelected(false);
-        }else if (skittles.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            KK.setSelected(false);
-            twix.setSelected(false);
-        }else if (twix.isSelected()){
-            GB.setSelected(false);
-            CLIF.setSelected(false);
-            cheetos.setSelected(false);
-            cookie.setSelected(false);
-            doritos.setSelected(false);
-            lays.setSelected(false);
-            nuts.setSelected(false);
-            pretzel.setSelected(false);
-            ruffles.setSelected(false);
-            skittles.setSelected(false);
-            KK.setSelected(false);
         }
     }//GEN-LAST:event_GBActionPerformed
 
     private void CLIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CLIFActionPerformed
         //Set Only One
+        if (CLIF.isSelected()){
+            GB.setSelected(false);
+            KK.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
     }//GEN-LAST:event_CLIFActionPerformed
 
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
@@ -501,21 +429,187 @@ public class VendingMachineUI extends javax.swing.JFrame {
         skittles.setSelected(false);
         twix.setSelected(false);
         
-        moneyOP.setText(" ");
-        changeOP.setText(" ");
+        moneyOP.setText("$ ");
+        changeOP.setText("$ ");
     }//GEN-LAST:event_clearActionPerformed
 
     private void cheetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cheetosActionPerformed
         //Set Only One
+        if (cheetos.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            KK.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
     }//GEN-LAST:event_cheetosActionPerformed
 
     private void cookieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cookieActionPerformed
         //Set Only One
+        if (cookie.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            KK.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
     }//GEN-LAST:event_cookieActionPerformed
 
     private void doritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doritosActionPerformed
         //Set Only One
+        if (doritos.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            KK.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
     }//GEN-LAST:event_doritosActionPerformed
+
+    private void KKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KKActionPerformed
+        //Set Only One
+        if (KK.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_KKActionPerformed
+
+    private void laysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laysActionPerformed
+        //Set Only One
+        if (lays.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            KK.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_laysActionPerformed
+
+    private void nutsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutsActionPerformed
+        //Set Only One
+        if (nuts.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            KK.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_nutsActionPerformed
+
+    private void pretzelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretzelActionPerformed
+        //Set Only One
+        if (pretzel.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            KK.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_pretzelActionPerformed
+
+    private void rufflesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rufflesActionPerformed
+        //Set Only One
+        if (ruffles.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            KK.setSelected(false);
+            skittles.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_rufflesActionPerformed
+
+    private void skittlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skittlesActionPerformed
+        //Set Only One
+        if (skittles.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            KK.setSelected(false);
+            twix.setSelected(false);
+        }
+    }//GEN-LAST:event_skittlesActionPerformed
+
+    private void twixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twixActionPerformed
+        //Set Only One
+        if (twix.isSelected()){
+            GB.setSelected(false);
+            CLIF.setSelected(false);
+            cheetos.setSelected(false);
+            cookie.setSelected(false);
+            doritos.setSelected(false);
+            lays.setSelected(false);
+            nuts.setSelected(false);
+            pretzel.setSelected(false);
+            ruffles.setSelected(false);
+            skittles.setSelected(false);
+            KK.setSelected(false);
+        }
+    }//GEN-LAST:event_twixActionPerformed
+
+    private void moneyOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyOPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_moneyOPActionPerformed
+
+    private void changeOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changeOPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,15 +627,11 @@ public class VendingMachineUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VendingMachineUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VendingMachineUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VendingMachineUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VendingMachineUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
