@@ -8,8 +8,8 @@ package vending.machine;
 import java.util.Scanner;
 public class VendingMachine {
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
-         
+        Scanner sc = new Scanner(System.in);
+        
         while (true) {
         System.out.println("Welcome to the Spirits Machine.");
         System.out.println("The selection of drinks\n=======================");
@@ -17,7 +17,7 @@ public class VendingMachine {
         System.out.print("Please enter your selection by entering the number: ");
         
         //drink selection I guess for the lols
-        int selection = Integer.parseInt(reader.nextLine());
+        int selection = Integer.parseInt(sc.nextLine());
         
         if (selection == 0) {
             break;
