@@ -7,13 +7,19 @@ package vendingmachine;
 /*
  * @author http://www.twitch.tv/diomondplaysgames
  */
-import vendingmachine.changecalc;
+import java.util.Scanner;
+import java.lang.Math;
+import javax.swing.JOptionPane;
 public class VendingMachineUI extends javax.swing.JFrame {
     /**
      * Creates new form VendingMachineUI
      */
     public VendingMachineUI() {
         initComponents();
+    }
+    public void changecalc() {
+        Scanner scan = new Scanner(System.in);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -604,10 +610,12 @@ public class VendingMachineUI extends javax.swing.JFrame {
 
     private void moneyOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyOPActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_moneyOPActionPerformed
 
     private void changeOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOPActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_changeOPActionPerformed
 
     /**
