@@ -1,40 +1,65 @@
- import java.util.Scanner;
- import javax.swing.JOptionPane;
- import java.io.*;
- 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
+ *
  *
  * @author Mehtab
  */
-public class GUI extends javax.swing.JFrame {    
+public class GUI extends javax.swing.JFrame {
+
+    public void reader(int toonie, int loonie, int quarter, int dime, int nickle) {
+        // Reader
+        
+        File file = new File("bank.txt");
+
+        try {
+            Scanner input = new Scanner(file);
+
+            toonie = input.nextInt();
+            loonie = input.nextInt();
+            quarter = input.nextInt();
+            dime = input.nextInt();
+            nickle = input.nextInt();
+        } catch (FileNotFoundException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+    }
+    
+    
     /*
-    Variables
-    */
-    Scanner sc = new Scanner(System.in);
+    Variables and necessary files
+     */
     double moneyinsert = 0;
     double changedue = 0;
     double getchange;
-    int nicklecount = 10;
-    int dimecount = 10;
-    int quartercount = 10;
-    int looniecount = 10;
-    int tooniecount = 10;
+    int nicklecount;
+    int dimecount; 
+    int quartercount;
+    int looniecount;
+    int tooniecount;
     int pepsicount = 0;
     int lemonadecount = 0;
     int watercount = 0;
     int tooniesdue;
     int looniesdue;
-    double quartersdue;
-    double dimesdue;
-    double nicklesdue;
+    int quartersdue;
+    int dimesdue;
+    int nicklesdue;
+    
     
     /**
      * Creates new form Window1
      */
     public GUI() {
         initComponents();
-        
+        reader(tooniecount, looniecount, quartercount, dimecount, nicklecount);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -390,9 +415,8 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void ITEMSELECTION() {
-        
+
         // CREATES LABEL TEXT BASED ON WHICH ITEMS ARE SELECTED
-        
         if (pepsicount == 0 && lemonadecount == 0 && watercount == 0) {
             itemselectL.setText("NO ITEM SELECTED");
         } else if (pepsicount > 0 && lemonadecount == 0 && watercount == 0) {
@@ -409,16 +433,16 @@ public class GUI extends javax.swing.JFrame {
             itemselectL.setText("LEMONADE AND WATER");
         } else if (pepsicount > 0 && lemonadecount > 0 && watercount > 0) {
             itemselectL.setText("PEPSI, LEMONADE, AND WATER");
-        } 
+        }
     }
-    
+
     public void RESET() {
         // full reset
         moneyinsert = 0;
         moneyinsertL.setText("$" + moneyinsert + "0");
         itemselectL.setText("NO ITEM SELECTED");
         changedue = 0;
-        changedueL.setText("$" + changedue +"0");                
+        changedueL.setText("$" + changedue + "0");
         nicklecount = 10;
         nickledispL.setText(Integer.toString(nicklecount));
         dimecount = 10;
@@ -442,14 +466,14 @@ public class GUI extends javax.swing.JFrame {
         dimesdue = 0;
         nicklesdue = 0;
     }
-    
-    public void RESETLIMIT(){
+
+    public void RESETLIMIT() {
         // limited reset for change maker method
         moneyinsert = 0;
         moneyinsertL.setText("$" + moneyinsert + "0");
         itemselectL.setText("NO ITEM SELECTED");
         changedue = 0;
-        changedueL.setText("$" + changedue +"0");          
+        changedueL.setText("$" + changedue + "0");
         pepsicount = 0;
         pepsidispL.setText(Integer.toString(pepsicount));
         lemonadecount = 0;
@@ -462,20 +486,19 @@ public class GUI extends javax.swing.JFrame {
         dimesdue = 0;
         nicklesdue = 0;
     }
-    
+
     public void ROUNDING() {
         // rounds value of money the vending machine owes you
         getchange = moneyinsert - changedue;
         getchangeL.setText(Double.toString(getchange));
-        getchange = getchange*100; // rounding code
+        getchange = getchange * 100; // rounding code
         getchange = Math.round(getchange);
     }
-    
+
     public void CHANGEMAKER() {
-        
+
         // CALCULATES HOW MUCH CHANGE AND WHICH COINS TO GIVE 
         // calculates value in cents not dollars 
-        
         // for unknown reason all values must be multiplied by 100
         // values in cents
         int nickleval = 5;
@@ -483,16 +506,16 @@ public class GUI extends javax.swing.JFrame {
         int quarterval = 25;
         int loonieval = 100;
         int toonieval = 200;
-        
+
         // logic
         if (moneyinsert - changedue < 0) {
             // message for insufficient money put in machine
             getchange = moneyinsert * 100;
-            
+
             // logic for coin refund on failed purchase
             while (getchange >= toonieval && tooniecount > tooniesdue) {
-               getchange -= toonieval;
-               tooniesdue += 1; 
+                getchange -= toonieval;
+                tooniesdue += 1;
             }
             while (getchange >= loonieval && looniecount > looniesdue) {
                 getchange -= loonieval;
@@ -500,34 +523,34 @@ public class GUI extends javax.swing.JFrame {
             }
             while (getchange >= quarterval && quartercount > quartersdue) {
                 getchange -= quarterval;
-                quartersdue += 1;                
+                quartersdue += 1;
             }
             while (getchange >= dimeval && dimecount > dimesdue) {
-                getchange -= dimeval; 
-                dimesdue += 1;               
+                getchange -= dimeval;
+                dimesdue += 1;
             }
             while (getchange >= nickleval && nicklecount > nicklesdue) {
-                getchange -= nickleval;    
-                nicklesdue += 1;                            
+                getchange -= nickleval;
+                nicklesdue += 1;
             }
-            
+
             // sets value of coins due
             tooniecount -= tooniesdue;
             looniecount -= looniesdue;
             quartercount -= quartersdue;
-            dimecount -= dimesdue;   
-            nicklecount -= nicklesdue; 
-            
+            dimecount -= dimesdue;
+            nicklecount -= nicklesdue;
+
             UPDATEL(); // updates labels
             RESETLIMIT(); // allows machine to work after failed purchase
             JOptionPane.showMessageDialog(this, "Sorry, insufficient change inserted.");
         } else if (moneyinsert - changedue >= 0) {
             ROUNDING();
-            
+
             // logic for coin refund on successful purchase
             while (getchange >= toonieval && tooniecount > tooniesdue) {
-               getchange -= toonieval;
-               tooniesdue += 1; 
+                getchange -= toonieval;
+                tooniesdue += 1;
             }
             while (getchange >= loonieval && looniecount > looniesdue) {
                 getchange -= loonieval;
@@ -535,160 +558,192 @@ public class GUI extends javax.swing.JFrame {
             }
             while (getchange >= quarterval && quartercount > quartersdue) {
                 getchange -= quarterval;
-                quartersdue += 1;                
+                quartersdue += 1;
             }
             while (getchange >= dimeval && dimecount > dimesdue) {
-                getchange -= dimeval; 
-                dimesdue += 1;               
+                getchange -= dimeval;
+                dimesdue += 1;
             }
             while (getchange >= nickleval && nicklecount > nicklesdue) {
-                getchange -= nickleval;    
-                nicklesdue += 1;                            
+                getchange -= nickleval;
+                nicklesdue += 1;
             }
-            
+
             // sets value of coins due
             tooniecount -= tooniesdue;
             looniecount -= looniesdue;
             quartercount -= quartersdue;
-            dimecount -= dimesdue;   
-            nicklecount -= nicklesdue;       
-            
+            dimecount -= dimesdue;
+            nicklecount -= nicklesdue;
+
             UPDATEL(); // updates labels
             // gives back coins
-            JOptionPane.showMessageDialog(this, tooniesdue + " toonies " + looniesdue + " loonies " + (int)quartersdue + " quarters " + (int)dimesdue + " dimes " + (int)nicklesdue + " nickles");
+            JOptionPane.showMessageDialog(this, tooniesdue + " toonies " + looniesdue + " loonies " + quartersdue + " quarters " + dimesdue + " dimes " + nicklesdue + " nickles");
             RESETLIMIT(); // allows machine to be used again after purchase
-        }      
+        }
         UPDATEL();
     }
-        
+
     public void UPDATEL() {
         nickledispL.setText(Integer.toString(nicklecount));
         dimedispL.setText(Integer.toString(dimecount));
         quarterdispL.setText(Integer.toString(quartercount));
         looniedispL.setText(Integer.toString(looniecount));
         tooniedispL.setText(Integer.toString(tooniecount));
-        moneyinsertL.setText("$" + Double.toString(moneyinsert) + "0");
+        moneyinsertL.setText("$" + Double.toString(moneyinsert));
     }
-    
+
     private void resetBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBActionPerformed
         // resets the program
-        RESET();        
+        RESET();
     }//GEN-LAST:event_resetBActionPerformed
 
     private void closeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBActionPerformed
-        // Closes form        
-        System.exit(0);        
+        // Closes form
+
+        File file = new File("bank.txt");
+        
+        int toonielog = tooniecount;
+        int loonielog = looniecount;
+        int quarterlog = quartercount;
+        int dimelog = dimecount;
+        int nicklelog = nicklecount;
+
+        try {
+            PrintWriter output = new PrintWriter(file);
+            output.println(toonielog + " " + loonielog + " " + quarterlog + " " + dimelog + " " + nicklelog);
+            output.close();
+        } catch (IOException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        System.exit(0);
+
     }//GEN-LAST:event_closeBActionPerformed
 
     private void purchaseBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseBActionPerformed
         // Purchases item        
-        CHANGEMAKER();        
+        CHANGEMAKER();
     }//GEN-LAST:event_purchaseBActionPerformed
 
     private void dimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimeBActionPerformed
         // inserts 1 dime per button click
-       
+
         dimecount += 1; // adds one dime to the machine
         moneyinsert += 0.10; // adds 10 cents to the machine
-        moneyinsert = moneyinsert*100; //rounding code
+        moneyinsert = moneyinsert * 100; //rounding code
         moneyinsert = Math.round(moneyinsert);
-        moneyinsert = moneyinsert /100; // rounding code
+        moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inserted label
         UPDATEL(); // updates display counter
-        
+
     }//GEN-LAST:event_dimeBActionPerformed
 
     private void toonieBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonieBActionPerformed
         // inserts 1 toonie
-        
+
         tooniecount += 1; // adds one toonie to the machine
         moneyinsert += 2; // adds 2 dollars to the machine
-        moneyinsert = moneyinsert*100; // rounding code
+        moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
-        moneyinsert = moneyinsert /100; // rounding code
+        moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inserted label
         UPDATEL(); // updates display counter
-        
+
     }//GEN-LAST:event_toonieBActionPerformed
 
     private void nickleBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickleBActionPerformed
         // inserts 1 nickle into the machine
-        
+
         nicklecount += 1; // adds one nickle to the machine
         moneyinsert += 0.05; // 5 cents to the machine
-        moneyinsert = moneyinsert*100; // rounding code
+        moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
-        moneyinsert = moneyinsert /100; // rounding code
+        moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inerted label
         UPDATEL(); // updates dislay counter
     }//GEN-LAST:event_nickleBActionPerformed
 
     private void quarterBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarterBActionPerformed
         // inserts 1 quarter into the machine
-        
+
         quartercount += 1; // adds one quarter to the machine
         moneyinsert += 0.25; // adds 25 cents to the machine
-        moneyinsert = moneyinsert*100; // rounding code
+        moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
-        moneyinsert = moneyinsert /100; // rounding code
+        moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inserted label
         UPDATEL(); //updates display counter
-        
+
     }//GEN-LAST:event_quarterBActionPerformed
 
     private void loonieBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loonieBActionPerformed
         // inserts 1 loonie into the machine
-        
+
         looniecount += 1; // adds one loonie to the machine
         moneyinsert += 1; // adds 1 dollar to the machine
-        moneyinsert = moneyinsert*100; // rounding code
+        moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
-        moneyinsert = moneyinsert /100; // rounding code
+        moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inserted label
         UPDATEL(); // updates display counter
-        
+
     }//GEN-LAST:event_loonieBActionPerformed
 
     private void pepsiBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pepsiBActionPerformed
         // selects pepsi
-        
+
         changedue += 1.50; // adds $1.50 to change due
-        changedue = changedue*100; // rounding code
+        changedue = changedue * 100; // rounding code
         changedue = Math.round(changedue);
-        changedue = changedue /100; // rounding code
+        changedue = changedue / 100; // rounding code
         changedueL.setText("$" + changedue + "0"); // updates change due label
         pepsicount += 1; // adds 1 pepsi to que
         pepsidispL.setText(Integer.toString(pepsicount)); // updates display counter  
-        ITEMSELECTION();
-                       
+        ITEMSELECTION(); // updates display text
+
+        // allows product to purchased without clicking purchase only if change has been inserted
+        if (moneyinsert > getchange) {
+            CHANGEMAKER();
+        }
+
     }//GEN-LAST:event_pepsiBActionPerformed
 
     private void lemonadeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemonadeBActionPerformed
         // selects lemonade
-        
+
         changedue += 2; // adds $2 to change due
-        changedue = changedue*100; // rounding code
+        changedue = changedue * 100; // rounding code
         changedue = Math.round(changedue);
-        changedue = changedue /100; // rounding code
+        changedue = changedue / 100; // rounding code
         changedueL.setText("$" + changedue + "0"); // updates change due label
         lemonadecount += 1; // adds 1 lemonade to que 
         lemonadedispL.setText(Integer.toString(lemonadecount)); // updates display counter
-        ITEMSELECTION();
-                       
+        ITEMSELECTION(); // updates display text
+
+        // allows product to purchased without clicking purchase only if change has been inserted
+        if (moneyinsert > getchange) {
+            CHANGEMAKER();
+        }
+
     }//GEN-LAST:event_lemonadeBActionPerformed
 
     private void waterBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterBActionPerformed
         // selects water
-               
+
         changedue += 3; // adds $3 to change due
-        changedue = changedue*100; // rounding code
+        changedue = changedue * 100; // rounding code
         changedue = Math.round(changedue);
-        changedue = changedue /100; // rounding code
+        changedue = changedue / 100; // rounding code
         changedueL.setText("$" + changedue + "0"); // updates change due label
         watercount += 1; // adds 1 water to que
         waterdispL.setText(Integer.toString(watercount)); // updates display counter 
-        ITEMSELECTION();
-                
+        ITEMSELECTION(); // updates display text
+
+        // allows product to purchased without clicking purchase only if change has been inserted
+        if (moneyinsert > getchange) {
+            CHANGEMAKER();
+        }
+
     }//GEN-LAST:event_waterBActionPerformed
 
     /**
