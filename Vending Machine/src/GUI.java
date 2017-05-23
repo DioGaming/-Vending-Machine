@@ -11,45 +11,26 @@ import javax.swing.JOptionPane;
  * @author Mehtab
  */
 public class GUI extends javax.swing.JFrame {
-
-    public void reader(int toonie, int loonie, int quarter, int dime, int nickle) {
-        // Reader
-        
-        File file = new File("bank.txt");
-
-        try {
-            Scanner input = new Scanner(file);
-
-            toonie = input.nextInt();
-            loonie = input.nextInt();
-            quarter = input.nextInt();
-            dime = input.nextInt();
-            nickle = input.nextInt();
-        } catch (FileNotFoundException ex) {
-            System.out.printf("ERROR: %s\n", ex);
-        }
-    }
-    
-    
+   
     /*
     Variables and necessary files
      */
     double moneyinsert = 0;
-    double changedue = 0;
-    double getchange;
-    int nicklecount;
-    int dimecount; 
-    int quartercount;
-    int looniecount;
-    int tooniecount;
+    double cost = 0;
+    double getchange = 0;
+    int nicklecount = 0;
+    int dimecount = 0; 
+    int quartercount = 0;
+    int looniecount = 0;
+    int tooniecount = 0;
     int pepsicount = 0;
     int lemonadecount = 0;
     int watercount = 0;
-    int tooniesdue;
-    int looniesdue;
-    int quartersdue;
-    int dimesdue;
-    int nicklesdue;
+    int tooniesdue = 0;
+    int looniesdue = 0;
+    int quartersdue = 0;
+    int dimesdue = 0;
+    int nicklesdue = 0;
     
     
     /**
@@ -57,7 +38,8 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        reader(tooniecount, looniecount, quartercount, dimecount, nicklecount);
+        READER();
+        UPDATEL();
     }
 
     /**
@@ -86,7 +68,7 @@ public class GUI extends javax.swing.JFrame {
         lemonadeB = new javax.swing.JButton();
         waterB = new javax.swing.JButton();
         label3 = new javax.swing.JLabel();
-        changedueL = new javax.swing.JLabel();
+        costL = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -195,7 +177,6 @@ public class GUI extends javax.swing.JFrame {
         pepsiB.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pepsiB.setForeground(new java.awt.Color(240, 240, 240));
         pepsiB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mehtab\\Dropbox\\Vending Machine\\pictures\\pepsi.png")); // NOI18N
-        pepsiB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pepsiB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pepsiBActionPerformed(evt);
@@ -205,7 +186,6 @@ public class GUI extends javax.swing.JFrame {
         lemonadeB.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lemonadeB.setForeground(new java.awt.Color(240, 240, 240));
         lemonadeB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mehtab\\Dropbox\\Vending Machine\\pictures\\lemonade.png")); // NOI18N
-        lemonadeB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
         lemonadeB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lemonadeBActionPerformed(evt);
@@ -223,9 +203,9 @@ public class GUI extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         label3.setText("CHANGE DUE:");
 
-        changedueL.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        changedueL.setLabelFor(label3);
-        changedueL.setText("$0.00");
+        costL.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        costL.setLabelFor(label3);
+        costL.setText("$0.00");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("$1.50");
@@ -338,7 +318,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(moneyinsertL)
-                                    .addComponent(changedueL)
+                                    .addComponent(costL)
                                     .addComponent(getchangeL))))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -368,7 +348,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label3)
-                                    .addComponent(changedueL))))
+                                    .addComponent(costL))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
@@ -414,6 +394,31 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void READER() {
+        // Reader
+        
+        File file = new File("bank.txt");
+        
+        try {
+            Scanner input = new Scanner(file);
+
+            int toonie = input.nextInt();
+            int loonie = input.nextInt();
+            int quarter = input.nextInt();
+            int dime = input.nextInt();
+            int nickle = input.nextInt();
+            
+            tooniecount = toonie;
+            looniecount = loonie;
+            quartercount = quarter;
+            dimecount = dime;
+            nicklecount = nickle;
+            
+        } catch (FileNotFoundException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+    }
+    
     public void ITEMSELECTION() {
 
         // CREATES LABEL TEXT BASED ON WHICH ITEMS ARE SELECTED
@@ -441,8 +446,8 @@ public class GUI extends javax.swing.JFrame {
         moneyinsert = 0;
         moneyinsertL.setText("$" + moneyinsert + "0");
         itemselectL.setText("NO ITEM SELECTED");
-        changedue = 0;
-        changedueL.setText("$" + changedue + "0");
+        cost = 0;
+        costL.setText("$" + cost + "0");
         nicklecount = 10;
         nickledispL.setText(Integer.toString(nicklecount));
         dimecount = 10;
@@ -472,8 +477,8 @@ public class GUI extends javax.swing.JFrame {
         moneyinsert = 0;
         moneyinsertL.setText("$" + moneyinsert + "0");
         itemselectL.setText("NO ITEM SELECTED");
-        changedue = 0;
-        changedueL.setText("$" + changedue + "0");
+        cost = 0;
+        costL.setText("$" + cost + "0");
         pepsicount = 0;
         pepsidispL.setText(Integer.toString(pepsicount));
         lemonadecount = 0;
@@ -489,7 +494,7 @@ public class GUI extends javax.swing.JFrame {
 
     public void ROUNDING() {
         // rounds value of money the vending machine owes you
-        getchange = moneyinsert - changedue;
+        getchange = moneyinsert - cost;
         getchangeL.setText(Double.toString(getchange));
         getchange = getchange * 100; // rounding code
         getchange = Math.round(getchange);
@@ -508,7 +513,7 @@ public class GUI extends javax.swing.JFrame {
         int toonieval = 200;
 
         // logic
-        if (moneyinsert - changedue < 0) {
+        if (moneyinsert - cost < 0) {
             // message for insufficient money put in machine
             getchange = moneyinsert * 100;
 
@@ -544,7 +549,7 @@ public class GUI extends javax.swing.JFrame {
             UPDATEL(); // updates labels
             RESETLIMIT(); // allows machine to work after failed purchase
             JOptionPane.showMessageDialog(this, "Sorry, insufficient change inserted.");
-        } else if (moneyinsert - changedue >= 0) {
+        } else if (moneyinsert - cost >= 0) {
             ROUNDING();
 
             // logic for coin refund on successful purchase
@@ -653,14 +658,15 @@ public class GUI extends javax.swing.JFrame {
 
     private void nickleBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickleBActionPerformed
         // inserts 1 nickle into the machine
-
+        
         nicklecount += 1; // adds one nickle to the machine
         moneyinsert += 0.05; // 5 cents to the machine
         moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
         moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inerted label
-        UPDATEL(); // updates dislay counter
+        UPDATEL(); // updates dislay counter\
+                
     }//GEN-LAST:event_nickleBActionPerformed
 
     private void quarterBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarterBActionPerformed
@@ -692,11 +698,11 @@ public class GUI extends javax.swing.JFrame {
     private void pepsiBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pepsiBActionPerformed
         // selects pepsi
 
-        changedue += 1.50; // adds $1.50 to change due
-        changedue = changedue * 100; // rounding code
-        changedue = Math.round(changedue);
-        changedue = changedue / 100; // rounding code
-        changedueL.setText("$" + changedue + "0"); // updates change due label
+        cost += 1.50; // adds $1.50 to change due
+        cost = cost * 100; // rounding code
+        cost = Math.round(cost);
+        cost = cost / 100; // rounding code
+        costL.setText("$" + cost + "0"); // updates change due label
         pepsicount += 1; // adds 1 pepsi to que
         pepsidispL.setText(Integer.toString(pepsicount)); // updates display counter  
         ITEMSELECTION(); // updates display text
@@ -711,11 +717,11 @@ public class GUI extends javax.swing.JFrame {
     private void lemonadeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemonadeBActionPerformed
         // selects lemonade
 
-        changedue += 2; // adds $2 to change due
-        changedue = changedue * 100; // rounding code
-        changedue = Math.round(changedue);
-        changedue = changedue / 100; // rounding code
-        changedueL.setText("$" + changedue + "0"); // updates change due label
+        cost += 2; // adds $2 to change due
+        cost = cost * 100; // rounding code
+        cost = Math.round(cost);
+        cost = cost / 100; // rounding code
+        costL.setText("$" + cost + "0"); // updates change due label
         lemonadecount += 1; // adds 1 lemonade to que 
         lemonadedispL.setText(Integer.toString(lemonadecount)); // updates display counter
         ITEMSELECTION(); // updates display text
@@ -730,11 +736,11 @@ public class GUI extends javax.swing.JFrame {
     private void waterBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterBActionPerformed
         // selects water
 
-        changedue += 3; // adds $3 to change due
-        changedue = changedue * 100; // rounding code
-        changedue = Math.round(changedue);
-        changedue = changedue / 100; // rounding code
-        changedueL.setText("$" + changedue + "0"); // updates change due label
+        cost += 3; // adds $3 to change due
+        cost = cost * 100; // rounding code
+        cost = Math.round(cost);
+        cost = cost / 100; // rounding code
+        costL.setText("$" + cost + "0"); // updates change due label
         watercount += 1; // adds 1 water to que
         waterdispL.setText(Integer.toString(watercount)); // updates display counter 
         ITEMSELECTION(); // updates display text
@@ -781,8 +787,8 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Header;
-    private javax.swing.JLabel changedueL;
     private javax.swing.JButton closeB;
+    private javax.swing.JLabel costL;
     private javax.swing.JButton dimeB;
     private javax.swing.JLabel dimedispL;
     private javax.swing.JLabel getchangeL;

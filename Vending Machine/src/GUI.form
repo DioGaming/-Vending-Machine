@@ -109,7 +109,7 @@
                               <EmptySpace pref="119" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="moneyinsertL" min="-2" max="-2" attributes="0"/>
-                                  <Component id="changedueL" min="-2" max="-2" attributes="0"/>
+                                  <Component id="costL" min="-2" max="-2" attributes="0"/>
                                   <Component id="getchangeL" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -149,7 +149,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="changedueL" min="-2" max="-2" attributes="0"/>
+                                  <Component id="costL" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -418,7 +418,7 @@
         <Property name="text" type="java.lang.String" value="CHANGE DUE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="changedueL">
+    <Component class="javax.swing.JLabel" name="costL">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="36" style="0"/>
