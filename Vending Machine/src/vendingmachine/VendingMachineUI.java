@@ -10,12 +10,25 @@ package vendingmachine;
 public class VendingMachineUI extends javax.swing.JFrame {
     double money = 0;
     
+    double GB_cost = 1.15;
+    double CLIF_cost = 2.00;
+    double cheetos_cost = 2.50;
+    double KK_cost = 1.50;
+    double cookie_cost = 1.00;
+    double doritos_cost = 2.50;
+    double lays_cost = 2.50;
+    double nuts_cost = 0.75;
+    double pretzel_cost = 0.60;
+    double ruffles_cost = 2.50;
+    double skittles_cost = 1.20;
+    double twix_cost = 2.00;
     
     public VendingMachineUI() {
         initComponents();
     }
     
     public void changecalc(){
+        
         
     }
     /*
@@ -533,40 +546,40 @@ public class VendingMachineUI extends javax.swing.JFrame {
         money = Double.parseDouble(moneyOP.getText());
         
         if (GB.isSelected()){
-            money = money - 1.15;
+            money = money - GB_cost;
             changeOP.setText(Double.toString(money));
         }else if(CLIF.isSelected()){
-            money = money - 2.00;
+            money = money - CLIF_cost;
             changeOP.setText(Double.toString(money));
         }else if(cheetos.isSelected()){
-            money = money - 2.50;
+            money = money - cheetos_cost;
             changeOP.setText(Double.toString(money));
         }else if(KK.isSelected()){
-            money = money - 1.50;
+            money = money - KK_cost;
             changeOP.setText(Double.toString(money));
         }else if(cookie.isSelected()){
-            money = money - 1.00;
+            money = money - cookie_cost;
             changeOP.setText(Double.toString(money));
         }else if(doritos.isSelected()){
-            money = money - 2.50;
+            money = money - doritos_cost;
             changeOP.setText(Double.toString(money));
         }else if(lays.isSelected()){
-            money = money - 2.50;
+            money = money - lays_cost;
             changeOP.setText(Double.toString(money));
         }else if(nuts.isSelected()){
-            money = money - 0.75;
+            money = money - nuts_cost;
             changeOP.setText(Double.toString(money));
         }else if(pretzel.isSelected()){
-            money = money - 0.60;
+            money = money - pretzel_cost;
             changeOP.setText(Double.toString(money));
         }else if(ruffles.isSelected()){
-            money = money - 2.50;
+            money = money - ruffles_cost;
             changeOP.setText(Double.toString(money));
         }else if(skittles.isSelected()){
-            money = money - 1.20;
+            money = money - skittles_cost;
             changeOP.setText(Double.toString(money));
         }else if(twix.isSelected()){
-            money = money - 2.00;
+            money = money - twix_cost;
             changeOP.setText(Double.toString(money));
         }
     }//GEN-LAST:event_buyActionPerformed
