@@ -29,6 +29,9 @@ public class VendingMachineUI extends javax.swing.JFrame {
     
     public void changecalc(){
         
+        while (money += 0.05){
+            
+        }
         
     }
     /*
@@ -582,6 +585,12 @@ public class VendingMachineUI extends javax.swing.JFrame {
             money = money - twix_cost;
             changeOP.setText(Double.toString(money));
         }
+        
+        if (money < 0 || money > 10){
+            changeOP.setText("ERROR");
+        }else{
+            changeOP.setText(Double.toString(money));
+        }
     }//GEN-LAST:event_buyActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
@@ -788,22 +797,32 @@ public class VendingMachineUI extends javax.swing.JFrame {
 
     private void quarterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarterActionPerformed
         //add $0.25
+        money += 0.25;
+        
     }//GEN-LAST:event_quarterActionPerformed
 
     private void nickelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickelActionPerformed
         //add $0.05
+        money += 0.05;
+        
     }//GEN-LAST:event_nickelActionPerformed
 
     private void dimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimeActionPerformed
         //add $0.10
+        money += 0.10;
+        
     }//GEN-LAST:event_dimeActionPerformed
 
     private void loonieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loonieActionPerformed
         //add $1.00
+        money += 1.00;
+        
     }//GEN-LAST:event_loonieActionPerformed
 
     private void toonieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonieActionPerformed
         //add $2.00
+        money += 2.00;
+        
     }//GEN-LAST:event_toonieActionPerformed
 
     /*
