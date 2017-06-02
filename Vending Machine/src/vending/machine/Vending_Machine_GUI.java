@@ -1,20 +1,20 @@
 package vending.machine;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.lang.Math;
 import java.util.Timer;//I don't think these are even needed but I'll keep them
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
- * @author r01.lam
+ * @author Richard Lam
+ * 
+ * Also credit to Mehtab and Yash
  */
 public class Vending_Machine_GUI extends javax.swing.JFrame {
-    
-    
     /*
     Drink price menu
     ****************
@@ -26,14 +26,18 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
     root beer $1.95
     */
     
-    //coin counting
+    //The till
     int nickel_count = 0;
     int dime_count = 0;
     int quarter_count = 0;
     int loonie_count = 0;
     int toonie_count = 0;
+    
+    //other money related things
     double money_count = 0;
     double cost_count = 0;
+    double money_display = money_count / 100;
+    double cost_display = cost_count / 100;
     
 
     //drinks counting
@@ -60,30 +64,52 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
     
     public Vending_Machine_GUI() {
         initComponents();
+        reader();
+    }
+    
+    public void reader(){
+        File vault = new File("till.txt");
         
+        try {
+            Scanner scan = new Scanner(vault);
+            
+            int toonie_bank = scan.nextInt();
+            int loonie_bank = scan.nextInt();
+            int quarter_bank = scan.nextInt();
+            int dime_bank = scan.nextInt();
+            int nickel_bank = scan.nextInt();
+            
+            toonie_count = toonie_bank;
+            loonie_count = loonie_bank;
+            quarter_count = quarter_bank;
+            dime_count = dime_bank;
+            nickel_count = nickel_bank;
+        } catch(FileNotFoundException ex) {
+            System.out.printf("Something went horribly wrong.", ex);
+        }
     }
     
     public void changecalc() {
-        
+        //The math has to be done in cents
         change = money_count - cost_count;
         
-        while (change >= 2.00) {
-            change -= 2.00;
+        while (change >= 200) {
+            change -= 200;
             return_toonie += 1;
         }
-        while (change >= 1.00) {
+        while (change >= 100) {
             return_loonie += 1;
-            change -= 1.00;
+            change -= 100;
         }
-        while (change >= 0.25) {
+        while (change >= 25) {
             return_quarter += 1;
-            change -= 0.25;
+            change -= 25;
         }
-        while (change >= 0.10) {
+        while (change >= 10) {
             return_dime += 1;
-            change -= 0.10;
-        }
-        while (change >= 0.049) {
+            change -= 10;
+        } 
+        while (change >= 5) {
             return_nickel += 1;
             change -= 5;
         }
@@ -139,6 +165,7 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
         peach_tally = new javax.swing.JLabel();
         root_beer = new javax.swing.JButton();
         root_tally = new javax.swing.JLabel();
+        close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -293,12 +320,19 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
         root_tally.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         root_tally.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 51, 0)));
 
+        close.setText("Close");
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(new_order, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,11 +372,11 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(order_again, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(confirmations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nickel_given, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(nickel_given, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(dime_given, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(quarter_given, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(loonie_given, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(toonie_given, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(toonie_given, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cost_tally, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -360,13 +394,16 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
                                                 .addComponent(dime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(checkout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addComponent(jLabel5)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(10, 10, 10)))))
                 .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(close)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(new_order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -384,7 +421,7 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(orange_juice, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                             .addComponent(orange_tally, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ice_tea, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                             .addComponent(tea_tally, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -400,7 +437,8 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(root_beer, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                             .addComponent(root_tally, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                        .addGap(366, 366, 366))
+                        .addGap(340, 340, 340)
+                        .addComponent(close))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -414,7 +452,7 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(money_tally, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -442,16 +480,16 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
 
     private void ginger_aleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ginger_aleActionPerformed
         ginger_count += 1;
-        cost_count += 2.00;
+        cost_count += 200;
         ginger_tally.setText(Integer.toString(ginger_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_ginger_aleActionPerformed
 
     private void orange_juiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orange_juiceActionPerformed
         orange_count += 1;
-        cost_count += 1.50;
+        cost_count += 150;
         orange_tally.setText(Integer.toString(orange_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_orange_juiceActionPerformed
 
     private void new_orderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_orderActionPerformed
@@ -497,54 +535,39 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
 
     private void ice_teaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ice_teaActionPerformed
         tea_count += 1;
-        cost_count += 1.75;
+        cost_count += 175;
         tea_tally.setText(Integer.toString(tea_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_ice_teaActionPerformed
 
     private void nickelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickelActionPerformed
         nickel_count += 1;
-        money_count += 0.05;
-        money_count = money_count * 100;
-        money_count = Math.round(money_count);
-        money_count = money_count / 100;
-        money_tally.setText(Double.toString(money_count));
+        money_count += 5;
+        money_tally.setText(Double.toString(money_count / 100));
     }//GEN-LAST:event_nickelActionPerformed
 
     private void dimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimeActionPerformed
         dime_count += 1;
-        money_count += 0.10;
-        money_count = money_count * 100;
-        money_count = Math.round(money_count);
-        money_count = money_count / 100;
-        money_tally.setText(Double.toString(money_count));
+        money_count += 10;
+        money_tally.setText(Double.toString(money_count / 100));
     }//GEN-LAST:event_dimeActionPerformed
 
     private void quarterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarterActionPerformed
         quarter_count += 1;
-        money_count += 0.25;
-        money_count = money_count * 100;
-        money_count = Math.round(money_count);
-        money_count = money_count / 100;
-        money_tally.setText(Double.toString(money_count));
+        money_count += 25;
+        money_tally.setText(Double.toString(money_count / 100));
     }//GEN-LAST:event_quarterActionPerformed
 
     private void loonieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loonieActionPerformed
         loonie_count += 1;
-        money_count += 1.00;
-        money_count = money_count * 100;
-        money_count = Math.round(money_count);
-        money_count = money_count / 100;
-        money_tally.setText(Double.toString(money_count));
+        money_count += 100;
+        money_tally.setText(Double.toString(money_count / 100));
     }//GEN-LAST:event_loonieActionPerformed
 
     private void toonieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toonieActionPerformed
         toonie_count += 1;
-        money_count += 2.00;
-        money_count = money_count * 100;
-        money_count = Math.round(money_count);
-        money_count = money_count / 100;
-        money_tally.setText(Double.toString(money_count));
+        money_count += 200;
+        money_tally.setText(Double.toString(money_count / 100));
     }//GEN-LAST:event_toonieActionPerformed
 
     private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
@@ -557,33 +580,31 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
 
     private void cocacolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocacolaActionPerformed
         coke_count += 1;
-        cost_count += 1.80;
-        cost_count = cost_count * 100;
-        cost_count = Math.round(cost_count);
-        cost_count = cost_count / 100;
+        cost_count += 180;
         coke_tally.setText(Integer.toString(coke_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_cocacolaActionPerformed
 
     private void peachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peachActionPerformed
         peach_count += 1;
-        cost_count += 2.10;
-        cost_count = cost_count * 100;
-        cost_count = Math.round(cost_count);
-        cost_count = cost_count / 100;
+        cost_count += 210;
         peach_tally.setText(Integer.toString(peach_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_peachActionPerformed
 
     private void root_beerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_root_beerActionPerformed
         root_count += 1;
-        cost_count += 1.95;
-        cost_count = cost_count * 100;
-        cost_count = Math.round(cost_count);
-        cost_count = cost_count / 100;
+        cost_count += 195;
         root_tally.setText(Integer.toString(root_count));
-        cost_tally.setText(Double.toString(cost_count));
+        cost_tally.setText(Double.toString(cost_count / 100));
     }//GEN-LAST:event_root_beerActionPerformed
+
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+
+        
+        
+        System.exit(0);
+    }//GEN-LAST:event_closeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,6 +641,7 @@ public class Vending_Machine_GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkout;
+    private javax.swing.JButton close;
     private javax.swing.JButton cocacola;
     private javax.swing.JLabel coke_tally;
     private javax.swing.JLabel confirmations;
