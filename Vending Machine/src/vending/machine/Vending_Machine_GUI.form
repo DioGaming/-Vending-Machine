@@ -64,21 +64,23 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="coke_tally" min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="machine_error" max="32767" attributes="0"/>
+                          <Component id="restart_pls" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="order_again" max="32767" attributes="0"/>
                           <Component id="confirmations" max="32767" attributes="0"/>
-                          <Component id="nickel_given" pref="158" max="32767" attributes="0"/>
+                          <Component id="nickel_given" pref="159" max="32767" attributes="0"/>
                           <Component id="dime_given" max="32767" attributes="0"/>
                           <Component id="quarter_given" max="32767" attributes="0"/>
                           <Component id="loonie_given" max="32767" attributes="0"/>
-                          <Component id="toonie_given" pref="158" max="32767" attributes="0"/>
+                          <Component id="toonie_given" pref="159" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="cost_tally" alignment="0" max="32767" attributes="0"/>
@@ -110,7 +112,7 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="close" min="-2" max="-2" attributes="0"/>
+              <Component id="close" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -134,9 +136,9 @@
                       <Component id="ginger_tally" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="orange_juice" pref="38" max="32767" attributes="0"/>
                           <Component id="orange_tally" max="32767" attributes="0"/>
@@ -161,11 +163,12 @@
                           <Component id="root_beer" pref="38" max="32767" attributes="0"/>
                           <Component id="root_tally" pref="38" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="340" max="-2" attributes="0"/>
-                      <Component id="close" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="machine_error" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="restart_pls" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="quarter" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="loonie" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -193,17 +196,19 @@
                       <Component id="toonie_given" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loonie_given" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="quarter_given" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dime_given" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nickel_given" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="order_again" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="quarter_given" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="dime_given" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="nickel_given" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="order_again" min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <Component id="close" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -229,7 +234,16 @@
     </Component>
     <Component class="javax.swing.JButton" name="ginger_ale">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7b" green="c8" red="f4" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ginger Ale"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 25]"/>
         </Property>
@@ -244,6 +258,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="orange_juice">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="7b" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Orange Juice"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 25]"/>
@@ -258,6 +275,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="ice_tea">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ice Tea"/>
       </Properties>
       <Events>
@@ -449,6 +469,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="cocacola">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Coca Cola"/>
       </Properties>
       <Events>
@@ -472,6 +495,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="peach">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="99" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Peach Juice"/>
       </Properties>
       <Events>
@@ -495,6 +521,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="root_beer">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="2" green="43" red="83" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Root Beer"/>
       </Properties>
       <Events>
@@ -518,11 +547,41 @@
     </Component>
     <Component class="javax.swing.JButton" name="close">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Close"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Shut Down"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="machine_error">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="restart_pls">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
