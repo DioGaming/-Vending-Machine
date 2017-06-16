@@ -3,14 +3,42 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+/*public void READER() {
+        // Reader
+        
+        File file = new File("INSERTNAME.txt");
+        
+        try {
+            Scanner input = new Scanner(file);
+
+            int toonie = input.nextInt();
+            int loonie = input.nextInt();
+            int quarter = input.nextInt();
+            int dime = input.nextInt();
+            int nickle = input.nextInt();
+            
+            tooniecount = toonie;
+            looniecount = loonie;
+            quartercount = quarter;
+            dimecount = dime;
+            nickelcount = nickle;
+            
+        } catch (FileNotFoundException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+    }
+*/
 
 /**
  *
  *
  * @author Mehtab
  */
-public class GUI extends javax.swing.JFrame {
+public final class GUI extends javax.swing.JFrame {
    
     /*
     Variables and necessary files
@@ -18,7 +46,7 @@ public class GUI extends javax.swing.JFrame {
     double moneyinsert = 0;
     double cost = 0;
     double getchange = 0;
-    int nicklecount = 0;
+    int nickelcount = 0;
     int dimecount = 0; 
     int quartercount = 0;
     int looniecount = 0;
@@ -30,7 +58,10 @@ public class GUI extends javax.swing.JFrame {
     int looniesdue = 0;
     int quartersdue = 0;
     int dimesdue = 0;
-    int nicklesdue = 0;
+    int nickelsdue = 0;
+    int pepsiinv = 0;
+    int lemonadeinv = 0;
+    int waterinv = 0;
     
     
     /**
@@ -38,7 +69,40 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        READER();
+        // Reader
+        File bank = new File("bank.txt");
+        File inventory = new File("inventory.txt");
+        
+        try {
+            // declares the scanners for each file
+            Scanner tillscan = new Scanner(bank);
+            Scanner inventoryscan = new Scanner(inventory);
+                    
+            //Till code
+            int toonie = tillscan.nextInt();
+            int loonie = tillscan.nextInt();
+            int quarter = tillscan.nextInt();
+            int dime = tillscan.nextInt();
+            int nickle = tillscan.nextInt();
+            
+            tooniecount = toonie;
+            looniecount = loonie;
+            quartercount = quarter;
+            dimecount = dime;
+            nickelcount = nickle;
+            
+            //Inventory code
+            int pepsi = inventoryscan.nextInt();
+            int lemonade = inventoryscan.nextInt();
+            int water = inventoryscan.nextInt(); 
+            
+            pepsiinv = pepsi;
+            lemonadeinv = lemonade;
+            waterinv = water;
+            
+        } catch (FileNotFoundException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
         UPDATEL();
     }
 
@@ -57,7 +121,7 @@ public class GUI extends javax.swing.JFrame {
         purchaseB = new javax.swing.JButton();
         label1 = new javax.swing.JLabel();
         moneyinsertL = new javax.swing.JLabel();
-        nickleB = new javax.swing.JButton();
+        nickelB = new javax.swing.JButton();
         dimeB = new javax.swing.JButton();
         quarterB = new javax.swing.JButton();
         loonieB = new javax.swing.JButton();
@@ -72,7 +136,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        nickledispL = new javax.swing.JLabel();
+        nickeldispL = new javax.swing.JLabel();
         dimedispL = new javax.swing.JLabel();
         quarterdispL = new javax.swing.JLabel();
         looniedispL = new javax.swing.JLabel();
@@ -80,7 +144,9 @@ public class GUI extends javax.swing.JFrame {
         pepsidispL = new javax.swing.JLabel();
         lemonadedispL = new javax.swing.JLabel();
         waterdispL = new javax.swing.JLabel();
-        getchangeL = new javax.swing.JLabel();
+        pepsiinvcountL = new javax.swing.JLabel();
+        lemonadeinvcountL = new javax.swing.JLabel();
+        waterinvcountL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -125,12 +191,12 @@ public class GUI extends javax.swing.JFrame {
         moneyinsertL.setLabelFor(label1);
         moneyinsertL.setText("$0.00");
 
-        nickleB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mehtab\\Dropbox\\Vending Machine\\pictures\\nickle.jpg")); // NOI18N
-        nickleB.setAutoscrolls(true);
-        nickleB.setPreferredSize(new java.awt.Dimension(40, 40));
-        nickleB.addActionListener(new java.awt.event.ActionListener() {
+        nickelB.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mehtab\\Dropbox\\Vending Machine\\pictures\\nickle.jpg")); // NOI18N
+        nickelB.setAutoscrolls(true);
+        nickelB.setPreferredSize(new java.awt.Dimension(40, 40));
+        nickelB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nickleBActionPerformed(evt);
+                nickelBActionPerformed(evt);
             }
         });
 
@@ -201,7 +267,7 @@ public class GUI extends javax.swing.JFrame {
         });
 
         label3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        label3.setText("CHANGE DUE:");
+        label3.setText("COST:");
 
         costL.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         costL.setLabelFor(label3);
@@ -217,25 +283,25 @@ public class GUI extends javax.swing.JFrame {
         jLabel3.setText("$3.00");
         jLabel3.setToolTipText("");
 
-        nickledispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        nickledispL.setLabelFor(nickleB);
-        nickledispL.setText("10");
+        nickeldispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        nickeldispL.setLabelFor(nickelB);
+        nickeldispL.setText("0");
 
         dimedispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         dimedispL.setLabelFor(dimeB);
-        dimedispL.setText("10");
+        dimedispL.setText("0");
 
         quarterdispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         quarterdispL.setLabelFor(quarterB);
-        quarterdispL.setText("10");
+        quarterdispL.setText("0");
 
         looniedispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         looniedispL.setLabelFor(loonieB);
-        looniedispL.setText("10");
+        looniedispL.setText("0");
 
         tooniedispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tooniedispL.setLabelFor(toonieB);
-        tooniedispL.setText("10");
+        tooniedispL.setText("0");
 
         pepsidispL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         pepsidispL.setLabelFor(pepsiB);
@@ -249,8 +315,14 @@ public class GUI extends javax.swing.JFrame {
         waterdispL.setLabelFor(waterB);
         waterdispL.setText("0");
 
-        getchangeL.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getchangeL.setText("0");
+        pepsiinvcountL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        pepsiinvcountL.setText("10");
+
+        lemonadeinvcountL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lemonadeinvcountL.setText("10");
+
+        waterinvcountL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        waterinvcountL.setText("10");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,10 +339,10 @@ public class GUI extends javax.swing.JFrame {
                                 .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(nickleB, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nickelB, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(114, 114, 114))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(nickledispL)
+                                        .addComponent(nickeldispL)
                                         .addGap(198, 198, 198)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dimeB, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,14 +362,23 @@ public class GUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
-                                            .addComponent(lemonadeB, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lemonadedispL))
-                                        .addGap(100, 100, 100)
+                                            .addComponent(lemonadedispL)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lemonadeB, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lemonadeinvcountL)))
+                                        .addGap(62, 62, 62)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(waterB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel3)
-                                            .addComponent(waterdispL)))))
-                            .addComponent(pepsiB, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(waterdispL)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(waterB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(waterinvcountL))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pepsiB, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pepsiinvcountL)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label2)
@@ -318,8 +399,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(moneyinsertL)
-                                    .addComponent(costL)
-                                    .addComponent(getchangeL))))))
+                                    .addComponent(costL))))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -359,8 +439,13 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(pepsiB)
-                                    .addComponent(lemonadeB, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(waterB, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pepsiinvcountL)
+                                        .addComponent(lemonadeB, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lemonadeinvcountL))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(waterinvcountL)
+                                        .addComponent(waterB, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(pepsidispL)
@@ -368,8 +453,6 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(waterdispL))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(getchangeL)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(loonieB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,11 +461,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(560, 560, 560)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dimeB, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nickleB, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nickelB, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(quarterB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nickledispL)
+                    .addComponent(nickeldispL)
                     .addComponent(dimedispL)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(quarterdispL)
@@ -394,30 +477,6 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void READER() {
-        // Reader
-        
-        File file = new File("bank.txt");
-        
-        try {
-            Scanner input = new Scanner(file);
-
-            int toonie = input.nextInt();
-            int loonie = input.nextInt();
-            int quarter = input.nextInt();
-            int dime = input.nextInt();
-            int nickle = input.nextInt();
-            
-            tooniecount = toonie;
-            looniecount = loonie;
-            quartercount = quarter;
-            dimecount = dime;
-            nicklecount = nickle;
-            
-        } catch (FileNotFoundException ex) {
-            System.out.printf("ERROR: %s\n", ex);
-        }
-    }
     
     public void ITEMSELECTION() {
 
@@ -444,32 +503,27 @@ public class GUI extends javax.swing.JFrame {
     public void RESET() {
         // full reset
         moneyinsert = 0;
-        moneyinsertL.setText("$" + moneyinsert + "0");
         itemselectL.setText("NO ITEM SELECTED");
         cost = 0;
         costL.setText("$" + cost + "0");
-        nicklecount = 10;
-        nickledispL.setText(Integer.toString(nicklecount));
+        nickelcount = 10;
         dimecount = 10;
-        dimedispL.setText(Integer.toString(dimecount));
         quartercount = 10;
-        quarterdispL.setText(Integer.toString(quartercount));
         looniecount = 10;
-        looniedispL.setText(Integer.toString(looniecount));
         tooniecount = 10;
-        tooniedispL.setText(Integer.toString(tooniecount));
         pepsicount = 0;
-        pepsidispL.setText(Integer.toString(pepsicount));
         lemonadecount = 0;
-        lemonadedispL.setText(Integer.toString(lemonadecount));
         watercount = 0;
-        waterdispL.setText(Integer.toString(watercount));
         getchange = 0;
         tooniesdue = 0;
         looniesdue = 0;
         quartersdue = 0;
         dimesdue = 0;
-        nicklesdue = 0;
+        nickelsdue = 0;
+        pepsiinv = 10;
+        lemonadeinv = 10;
+        waterinv = 10;
+        UPDATEL();
     }
 
     public void RESETLIMIT() {
@@ -489,13 +543,12 @@ public class GUI extends javax.swing.JFrame {
         looniesdue = 0;
         quartersdue = 0;
         dimesdue = 0;
-        nicklesdue = 0;
+        nickelsdue = 0;
     }
 
     public void ROUNDING() {
         // rounds value of money the vending machine owes you
         getchange = moneyinsert - cost;
-        getchangeL.setText(Double.toString(getchange));
         getchange = getchange * 100; // rounding code
         getchange = Math.round(getchange);
     }
@@ -514,7 +567,7 @@ public class GUI extends javax.swing.JFrame {
 
         // logic
         if (moneyinsert - cost < 0) {
-            // message for insufficient money put in machine
+            // message for insufficient money inserted into machine
             getchange = moneyinsert * 100;
 
             // logic for coin refund on failed purchase
@@ -534,9 +587,9 @@ public class GUI extends javax.swing.JFrame {
                 getchange -= dimeval;
                 dimesdue += 1;
             }
-            while (getchange >= nickleval && nicklecount > nicklesdue) {
+            while (getchange >= nickleval && nickelcount > nickelsdue) {
                 getchange -= nickleval;
-                nicklesdue += 1;
+                nickelsdue += 1;
             }
 
             // sets value of coins due
@@ -544,7 +597,12 @@ public class GUI extends javax.swing.JFrame {
             looniecount -= looniesdue;
             quartercount -= quartersdue;
             dimecount -= dimesdue;
-            nicklecount -= nicklesdue;
+            nickelcount -= nickelsdue;
+            
+            // sets inventory to correct values
+            pepsiinv += pepsicount;
+            lemonadeinv += lemonadecount;
+            waterinv += watercount;
 
             UPDATEL(); // updates labels
             RESETLIMIT(); // allows machine to work after failed purchase
@@ -569,9 +627,9 @@ public class GUI extends javax.swing.JFrame {
                 getchange -= dimeval;
                 dimesdue += 1;
             }
-            while (getchange >= nickleval && nicklecount > nicklesdue) {
+            while (getchange >= nickleval && nickelcount > nickelsdue) {
                 getchange -= nickleval;
-                nicklesdue += 1;
+                nickelsdue += 1;
             }
 
             // sets value of coins due
@@ -579,23 +637,34 @@ public class GUI extends javax.swing.JFrame {
             looniecount -= looniesdue;
             quartercount -= quartersdue;
             dimecount -= dimesdue;
-            nicklecount -= nicklesdue;
-
+            nickelcount -= nickelsdue;
+            
             UPDATEL(); // updates labels
             // gives back coins
-            JOptionPane.showMessageDialog(this, tooniesdue + " toonies " + looniesdue + " loonies " + quartersdue + " quarters " + dimesdue + " dimes " + nicklesdue + " nickles");
+            
+            if (tooniesdue > 0 || looniesdue > 0 || quartersdue > 0 || dimesdue > 0 || nickelsdue > 0) {
+                JOptionPane.showMessageDialog(this, tooniesdue + " toonies " + looniesdue + " loonies " + quartersdue + " quarters " + dimesdue + " dimes " + nickelsdue + " nickles");
+            } else if (tooniesdue == 0 && looniesdue == 0 && quartersdue == 0 && dimesdue == 0 && nickelsdue == 0) {
+                JOptionPane.showMessageDialog(this, "Purchase complete.");
+            }
             RESETLIMIT(); // allows machine to be used again after purchase
         }
         UPDATEL();
     }
 
     public void UPDATEL() {
-        nickledispL.setText(Integer.toString(nicklecount));
+        nickeldispL.setText(Integer.toString(nickelcount));
         dimedispL.setText(Integer.toString(dimecount));
         quarterdispL.setText(Integer.toString(quartercount));
         looniedispL.setText(Integer.toString(looniecount));
         tooniedispL.setText(Integer.toString(tooniecount));
+        pepsiinvcountL.setText(Integer.toString(pepsiinv));
+        lemonadeinvcountL.setText(Integer.toString(lemonadeinv));
+        waterinvcountL.setText(Integer.toString(waterinv));
         moneyinsertL.setText("$" + Double.toString(moneyinsert));
+        pepsidispL.setText(Integer.toString(pepsicount));        
+        lemonadedispL.setText(Integer.toString(lemonadecount));
+        waterdispL.setText(Integer.toString(watercount));
     }
 
     private void resetBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBActionPerformed
@@ -606,18 +675,28 @@ public class GUI extends javax.swing.JFrame {
     private void closeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBActionPerformed
         // Closes form
 
-        File file = new File("bank.txt");
+        File bank = new File("bank.txt");
+        File inventory = new File("inventory.txt");
         
         int toonielog = tooniecount;
         int loonielog = looniecount;
         int quarterlog = quartercount;
         int dimelog = dimecount;
-        int nicklelog = nicklecount;
+        int nicklelog = nickelcount;
+        
+        int pepsilog = pepsiinv;
+        int lemonadelog = lemonadeinv;
+        int waterlog = waterinv;
 
-        try {
-            PrintWriter output = new PrintWriter(file);
-            output.println(toonielog + " " + loonielog + " " + quarterlog + " " + dimelog + " " + nicklelog);
-            output.close();
+        try (PrintWriter outputbank = new PrintWriter(bank)) {
+            //output.println("toonies loonies quarters dimes nickles");
+            outputbank.println(toonielog + " " + loonielog + " " + quarterlog + " " + dimelog + " " + nicklelog);
+            outputbank.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } try (PrintWriter outputinv = new PrintWriter(inventory)) {
+            outputinv.println(pepsilog + " " + lemonadelog + " " + waterlog);
+            outputinv.close();
         } catch (IOException ex) {
             System.out.printf("ERROR: %s\n", ex);
         }
@@ -656,10 +735,10 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_toonieBActionPerformed
 
-    private void nickleBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickleBActionPerformed
+    private void nickelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickelBActionPerformed
         // inserts 1 nickle into the machine
         
-        nicklecount += 1; // adds one nickle to the machine
+        nickelcount += 1; // adds one nickle to the machine
         moneyinsert += 0.05; // 5 cents to the machine
         moneyinsert = moneyinsert * 100; // rounding code
         moneyinsert = Math.round(moneyinsert);
@@ -667,7 +746,7 @@ public class GUI extends javax.swing.JFrame {
         moneyinsertL.setText("$" + moneyinsert); // updates change inerted label
         UPDATEL(); // updates dislay counter\
                 
-    }//GEN-LAST:event_nickleBActionPerformed
+    }//GEN-LAST:event_nickelBActionPerformed
 
     private void quarterBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarterBActionPerformed
         // inserts 1 quarter into the machine
@@ -703,14 +782,10 @@ public class GUI extends javax.swing.JFrame {
         cost = Math.round(cost);
         cost = cost / 100; // rounding code
         costL.setText("$" + cost + "0"); // updates change due label
-        pepsicount += 1; // adds 1 pepsi to que
-        pepsidispL.setText(Integer.toString(pepsicount)); // updates display counter  
+        pepsicount += 1; // adds 1 pepsi to que 
+        pepsiinv -= 1;
         ITEMSELECTION(); // updates display text
-
-        // allows product to purchased without clicking purchase only if change has been inserted
-        if (moneyinsert > getchange) {
-            CHANGEMAKER();
-        }
+        UPDATEL();
 
     }//GEN-LAST:event_pepsiBActionPerformed
 
@@ -723,13 +798,9 @@ public class GUI extends javax.swing.JFrame {
         cost = cost / 100; // rounding code
         costL.setText("$" + cost + "0"); // updates change due label
         lemonadecount += 1; // adds 1 lemonade to que 
-        lemonadedispL.setText(Integer.toString(lemonadecount)); // updates display counter
+        lemonadeinv -= 1;
         ITEMSELECTION(); // updates display text
-
-        // allows product to purchased without clicking purchase only if change has been inserted
-        if (moneyinsert > getchange) {
-            CHANGEMAKER();
-        }
+        UPDATEL();
 
     }//GEN-LAST:event_lemonadeBActionPerformed
 
@@ -742,13 +813,9 @@ public class GUI extends javax.swing.JFrame {
         cost = cost / 100; // rounding code
         costL.setText("$" + cost + "0"); // updates change due label
         watercount += 1; // adds 1 water to que
-        waterdispL.setText(Integer.toString(watercount)); // updates display counter 
+        waterinv -=1;
         ITEMSELECTION(); // updates display text
-
-        // allows product to purchased without clicking purchase only if change has been inserted
-        if (moneyinsert > getchange) {
-            CHANGEMAKER();
-        }
+        UPDATEL();
 
     }//GEN-LAST:event_waterBActionPerformed
 
@@ -768,15 +835,11 @@ public class GUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -791,7 +854,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel costL;
     private javax.swing.JButton dimeB;
     private javax.swing.JLabel dimedispL;
-    private javax.swing.JLabel getchangeL;
     private javax.swing.JLabel itemselectL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -801,13 +863,15 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel label3;
     private javax.swing.JButton lemonadeB;
     private javax.swing.JLabel lemonadedispL;
+    private javax.swing.JLabel lemonadeinvcountL;
     private javax.swing.JButton loonieB;
     private javax.swing.JLabel looniedispL;
     private javax.swing.JLabel moneyinsertL;
-    private javax.swing.JButton nickleB;
-    private javax.swing.JLabel nickledispL;
+    private javax.swing.JButton nickelB;
+    private javax.swing.JLabel nickeldispL;
     private javax.swing.JButton pepsiB;
     private javax.swing.JLabel pepsidispL;
+    private javax.swing.JLabel pepsiinvcountL;
     private javax.swing.JButton purchaseB;
     private javax.swing.JButton quarterB;
     private javax.swing.JLabel quarterdispL;
@@ -816,5 +880,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel tooniedispL;
     private javax.swing.JButton waterB;
     private javax.swing.JLabel waterdispL;
+    private javax.swing.JLabel waterinvcountL;
     // End of variables declaration//GEN-END:variables
 }
