@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+//reader template
 /*public void READER() {
         // Reader
         
@@ -43,25 +43,25 @@ public final class GUI extends javax.swing.JFrame {
     /*
     Variables and necessary files
      */
-    double moneyinsert = 0;
-    double cost = 0;
-    double getchange = 0;
-    int nickelcount = 0;
-    int dimecount = 0; 
-    int quartercount = 0;
-    int looniecount = 0;
-    int tooniecount = 0;
-    int pepsicount = 0;
-    int lemonadecount = 0;
-    int watercount = 0;
-    int tooniesdue = 0;
-    int looniesdue = 0;
-    int quartersdue = 0;
-    int dimesdue = 0;
-    int nickelsdue = 0;
-    int pepsiinv = 0;
-    int lemonadeinv = 0;
-    int waterinv = 0;
+    double moneyinsert = 0; // all inserted money
+    double cost = 0; // cost of products
+    double getchange = 0; // change the machine owes you 
+    int nickelcount = 0; // amount of nickles in machine
+    int dimecount = 0; // amount of dimes  in machine
+    int quartercount = 0; // amount of quarters  in machine
+    int looniecount = 0; // amount of loonies  in machine
+    int tooniecount = 0;// amount of toonies  in machine
+    int pepsicount = 0; // amount of pepsi being purchased
+    int lemonadecount = 0; // amount of lemonade being purchased
+    int watercount = 0; // amount of water being purchased
+    int tooniesdue = 0; // toonies owed to the customer
+    int looniesdue = 0; // loonies owed to the customer
+    int quartersdue = 0; // wuarters owed to the customer
+    int dimesdue = 0; // dimes owed to the customer
+    int nickelsdue = 0; // nickles owed to the customer
+    int pepsiinv = 0; //amount of pepsi inside the machine
+    int lemonadeinv = 0; //amount of lemonade inside the machine
+    int waterinv = 0; //amount of water inside the machine
     
     
     /**
@@ -69,10 +69,12 @@ public final class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        // Reader
+        // creats new file in case it doesnt exist in the system
+        // failsafe
         File bank = new File("bank.txt");
         File inventory = new File("inventory.txt");
         
+        // Reader code
         try {
             // declares the scanners for each file
             Scanner tillscan = new Scanner(bank);
@@ -103,7 +105,7 @@ public final class GUI extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             System.out.printf("ERROR: %s\n", ex);
         }
-        UPDATEL();
+        UPDATEL(); //calls UPDATEL method
     }
 
     /**
@@ -523,6 +525,9 @@ public final class GUI extends javax.swing.JFrame {
         pepsiinv = 10;
         lemonadeinv = 10;
         waterinv = 10;
+        waterB.setEnabled(true);
+        lemonadeB.setEnabled(true);
+        pepsiB.setEnabled(true);
         UPDATEL();
     }
 
@@ -566,9 +571,10 @@ public final class GUI extends javax.swing.JFrame {
         int toonieval = 200;
 
         // logic
+        // code for failed purchase 
         if (moneyinsert - cost < 0) {
             // message for insufficient money inserted into machine
-            getchange = moneyinsert * 100;
+            getchange = moneyinsert * 100; // the machine gives a full refund
 
             // logic for coin refund on failed purchase
             while (getchange >= toonieval && tooniecount > tooniesdue) {
@@ -608,7 +614,8 @@ public final class GUI extends javax.swing.JFrame {
             RESETLIMIT(); // allows machine to work after failed purchase
             JOptionPane.showMessageDialog(this, "Sorry, insufficient change inserted.");
         } else if (moneyinsert - cost >= 0) {
-            ROUNDING();
+            // code for succesful purchase
+            ROUNDING(); 
 
             // logic for coin refund on successful purchase
             while (getchange >= toonieval && tooniecount > tooniesdue) {
@@ -707,6 +714,7 @@ public final class GUI extends javax.swing.JFrame {
     private void purchaseBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseBActionPerformed
         // Purchases item        
         CHANGEMAKER();
+        
     }//GEN-LAST:event_purchaseBActionPerformed
 
     private void dimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimeBActionPerformed
@@ -718,7 +726,7 @@ public final class GUI extends javax.swing.JFrame {
         moneyinsert = Math.round(moneyinsert);
         moneyinsert = moneyinsert / 100; // rounding code
         moneyinsertL.setText("$" + moneyinsert); // updates change inserted label
-        UPDATEL(); // updates display counter
+        UPDATEL(); // updates display counter        
 
     }//GEN-LAST:event_dimeBActionPerformed
 
@@ -785,6 +793,9 @@ public final class GUI extends javax.swing.JFrame {
         pepsicount += 1; // adds 1 pepsi to que 
         pepsiinv -= 1;
         ITEMSELECTION(); // updates display text
+        if (pepsiinv == 0) {
+            pepsiB.setEnabled(false);
+        }
         UPDATEL();
 
     }//GEN-LAST:event_pepsiBActionPerformed
@@ -800,6 +811,9 @@ public final class GUI extends javax.swing.JFrame {
         lemonadecount += 1; // adds 1 lemonade to que 
         lemonadeinv -= 1;
         ITEMSELECTION(); // updates display text
+        if (lemonadeinv == 0) {
+            lemonadeB.setEnabled(false);
+        }
         UPDATEL();
 
     }//GEN-LAST:event_lemonadeBActionPerformed
@@ -815,6 +829,9 @@ public final class GUI extends javax.swing.JFrame {
         watercount += 1; // adds 1 water to que
         waterinv -=1;
         ITEMSELECTION(); // updates display text
+        if (waterinv == 0) {
+            waterB.setEnabled(false);
+        }
         UPDATEL();
 
     }//GEN-LAST:event_waterBActionPerformed
